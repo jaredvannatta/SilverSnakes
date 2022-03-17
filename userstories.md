@@ -12,6 +12,14 @@ Acceptance Test: Playing the game, moving through the world and engaging in comb
 
 User Story 2:
 
+As a student of CS 371 I want to get an A on our game so that I can pass CS 371 and progress toward graduation.
+Elaboration: We need to continually work on making our game that functions and meets all the requirements of the assignments each week.
+
+Effort Estimation: About 40 person hours. 
+
+Acceptance Test: Our game works as intended and we recieve an A on all of the assignments.
+
+
 User Story 3: 
 
 User Story 4:
