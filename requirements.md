@@ -1,40 +1,40 @@
 Team Silver Snakes *ssss* *sssss* *sssss*
 1. Introduction
 1.1 Purpose of Product
-A simple RPG game developed in Pico-8 that allows the user to explore a created world, fight monsters, and complete a set of tasks to end the game. 
+  A simple RPG game developed in Pico-8 that allows the user to explore a created world, fight monsters, and complete a set of tasks to end the game. 
 
 1.2 Scope of Product
-This will be a short game that focuses on mechanic competency over length and complexity. We hope to allow a player to move and interact with the world, pick up items, and fight monsters to reach the end of the game. We will create conditions for the player to win the game, lose by taking damage, and modify character stats. This will not be an 8-bit version of Skyrim. 
+  This will be a short game that focuses on mechanic competency over length and complexity. We hope to allow a player to move and interact with the world, pick up items, and fight monsters to reach the end of the game. We will create conditions for the player to win the game, lose by taking damage, and modify character stats. This will not be an 8-bit version of Skyrim. 
 
 1.3 Acronyms, Abbreviations, Definitions
-Pico-8 refers to the development platform we are using.
+  Pico-8 refers to the development platform we are using.
 
 1.4 References
-N/A.
+  N/A.
 
 2. General Description of Product
-This section contains a longer but not exhaustive description of your product.
+  This section contains a longer but not exhaustive description of your product.
 
 2.1 Context of Product
-Context or environment that your product will be in.
+  Context or environment that your product will be in.
 
 2.2 Domain Model with Description
-Display and describe your domain model.
+  Display and describe your domain model.
 
 2.3 Product Functions (general)
-Basic overview of the capabilities of your product. This is not your list of functional requirements, but an overview. Part of your problem statement might be good here.
+  Basic overview of the capabilities of your product. This is not your list of functional requirements, but an overview. Part of your problem statement might be good     here.
 
 2.4 User Characteristics and Expectations
-Describe your users and their abilities.
+  Describe your users and their abilities.
 
 2.5 Constraints
-Describe any constraints on your system.
+  Describe any constraints on your system.
 
 2.6 Assumptions and Dependencies
-Does your system depend on external software packages? System assumptions? If so, describe them.
+  Does your system depend on external software packages? System assumptions? If so, describe them.
 
 3. Functional Requirements
-In a standard requirements document, you would have a LONG list of functional requirements here. You should put a link to your user story page here.
+  In a standard requirements document, you would have a LONG list of functional requirements here. You should put a link to your user story page here.
 
 4. System and Non-functional Requirements
 4.1 External Interface Requirements (User,Hardware,Software,Communications)
