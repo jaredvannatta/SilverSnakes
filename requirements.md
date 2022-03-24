@@ -41,3 +41,12 @@ Our biggest design constraint is overall scope/time in this class. We are a team
 4.3 Quality Requirements
 Our users are just expecting something that is playable, that has clear goals, obvious affordances, and a win/lose condition that makes sense. 
 
+```mermaid
+erDiagram
+    GAME-LOOP  ||--|{ PLAYER : contains
+    GAME-LOOP  ||--|{ MAP : contains
+    GAME-LOOP  ||--|{ INVENTORY : contains
+    PLAYER }|..|{ MAP : uses
+    INVENTORY }|..|{ MAP : uses
+    ANIMATE }|..|{ MAP : uses
+```
