@@ -33,7 +33,49 @@ Acceptance Test: Conduct a full play through of the game, from start to finish. 
 
 
 User Story 4:
+As a user/gamer, who has played a large variety of role-playing games (RPG), I want a role-playing game that while it takes inspiration from similar games, has something that both makes it unique and stand out from the rest.
+
+Elaboration: Players should be able to do a lot of the things that makes an RPG an RPG. This includes moving, leveling up, fighting, item management, experience a story as well as new mechanics to make the game unique like environmental challenges such as arrows the player has to dodge and traps they have to avoid.
+
+Constraints: One big constraint is time, only having a little more than a month to finish this project as well as work from other courses can cause concern about whether the specified software can be delivered.
+
+Effort Estimation: 100 person-hours
+
+Acceptance Test: Have people from outside Team Silver Snakes who have played these types of games before play the game and only consider the project acceptable until the majority of the feedback received is positive.
+
 
 User Story 5:
+As a user/consumer, who has very little experience playing video games in general, I want a game that can easily grab my attention and makes me want to keep playing despite having close to no experience playing games. 
 
-User Story 6: 
+Elaboration: Players should feel that the game is welcoming to new players and that the game contains elements that can keep their attention, such as an intriguing plot that makes them want to play until the end or interesting gameplay mechanics that make playing the game fun while still having them experience the gameplay mechanics and challenges that make RPG games interesting and fun.
+
+Constraints: none
+
+Effort Estimation: 50 person-hours
+
+Acceptance Test: Have multiple people who have little experience playing video games play the game and consider it successful if they all are able to get to the end of the game.  
+
+
+User Story 6:
+As a user/gamer, I want a role-playing game that is easily accessible to both players who have very little or no experience playing role playing games, while still being interesting and challenging for people familiar with these kinds of games.
+
+Elaboration: The controls of the games should be easy to understand and take into consideration both experienced and inexperienced players. Players should be able to easily identify which character they are controlling as well as their goal to complete the game.
+
+Constraints: A constraint or difficulty I believe the team would run into is on balancing the game for both experienced and inexperienced players. For example, balancing the difficulty so that new players don’t feel that the enemy is too strong or that the game is too difficult to be enjoyed, while keeping the game challenging and interesting to the experienced players.
+
+Effort Estimation: 50 person-hours
+
+Acceptance Test: Have multiple people of different levels of experience play the game, once the game can be completed by both, we can accept it as successful.  
+
+
+User Story 7:
+As a student/gamer, who has played a large variety of games including RPGs, I want a role-playing game that has interesting and deep combat mechanics that make playing the game fun.
+
+Elaboration: Players should be able to initiate combat against an enemy non-playable character (NPC) and be able to either defeat the enemy or be defeated by the enemy while managing their resources like health and items. 
+
+Constraints: none
+
+Effort Estimation: 40 person-hours
+
+Acceptance Test: Have multiple people play through the game and have them defeat multiple enemies. The game will be considered successful if most of the players can defeat all of the enemies.
+
