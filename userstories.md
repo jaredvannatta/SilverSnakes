@@ -79,3 +79,38 @@ Effort Estimation: 40 person-hours
 
 Acceptance Test: Have multiple people play through the game and have them defeat multiple enemies. The game will be considered successful if most of the players can defeat all of the enemies.
 
+
+User Story 8:
+As A user/gamer, who wants to introduce his girlfriend to video games, I want a game that is simple while entertaining that grips the users attention.
+
+Elaboration: The games controls and mechanics should be simple to understand while still being fun to use. The game itself should be very beginnner friendly.
+
+constraints: It could be hard to make the game entertain both new players and pro gamers.
+
+Effort Estimation: 50 person-hours
+
+Acceptance Test: Have multiple people who have never played video games before try this game and see if they enjoy it and would want to play more.
+
+
+User Story 9:
+As an absolute pro gamer, who has won multiple Esports tournaments, I want a game that allows me to put my skills to the test and train my reflexes and hand to eye coordination to be even better!
+
+Elaboration: The game has to be crazy cool and take skill! I have to be able to put my little digits to the test and press all the buttons as fast as possible
+
+constraints: The developers might have a hard time making it as fast paced as I need it to be.
+
+Effort Estimation: 100 person-hours
+
+Acceptance Test: After playing this game and resuming all my competitive games my rank needs to go up by at least one division in all of the games.
+
+
+User Story 10:
+As a video game speed runner, who has set a few world records before, I want a game that allows me to strive to set the world record for the fastest time beating the game.
+
+Elaboration: This game needs to be challenging enough to allow players to get better and better and constantly improve their time to beat the game.
+
+constraints: The game might be too simple to allow a speed runner like me to really enjoy the experience of getting the fastest time possible.
+
+Effort Estimation: 40 person-hours
+
+Acceptance Test: Upon playing the game multiple times your completion speed keeps improving
