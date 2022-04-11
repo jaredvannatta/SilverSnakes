@@ -19,21 +19,15 @@ As of now there are not control issues, we are able to share and develop the pro
 
 # Design Architecture -- Repository Model
 
-```mermaid
-flowchart LR
-    id2([Map Input]) --- id1[(Game State)]
-    id3([Sprite Input]) --- id1[(Game State)]
-    id1[(Game State)] --- id4([Obstacle Interference])
-    id1[(Game State)] --- id5([Win/Lose])
-    id6([Game Loop]) --- id1[(Game State)]
-    id1([Game State]) --- id7([Player Input])
-```
-  In the diagram, the game loop is affected/manipulated by the outside knowledge sources.
-  These knowledge sources are things the player can manipulate/change that will affect the blackboard/repository.
-  The four main knowledge sources are map input, sprite input, obstacle interference, and win/lose.
+![image](https://user-images.githubusercontent.com/63473565/162782957-1640b70d-02c9-4e50-8ac0-981cf24731ac.png)
+
+
+In the diagram, the game loop is affected/manipulated by the outside knowledge sources.
+These knowledge sources are things the player can manipulate/change that will affect the blackboard/repository.
+The four main knowledge sources are map input, sprite input, obstacle interference, and win/lose.
   
-  ## KEY CHANGES: 
-  We re-thought our understanding of what the core repository is based on feedback. The game state is the core repository that all other components must reference to augment the map environment, control scheme, obstacles or enemies, and if there is a win/lose condition met. 
+## KEY CHANGES: 
+We re-thought our understanding of what the core repository is based on feedback. The game state is the core repository that all other components must reference to augment the map environment, control scheme, obstacles or enemies, and if there is a win/lose condition met. 
   
 #Note on Requirements:
 
