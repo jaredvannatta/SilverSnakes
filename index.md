@@ -1,9 +1,11 @@
-## Welcome to Team Silver Snakes Project Page
+# Welcome to Team Silver Snakes Project Page
 
 _Derek Oda_
 _Lance Stutzman_
 _Ernesto Valenciana_
 _Jared Van Natta_
+
+# Get the [Latest Release](https://github.com/tai-pan1841/SilverSnakes/releases/tag/v0.3)!
 
 # Overview of [Design](https://tai-pan1841.github.io/SilverSnakes/designdocument.md):
 
@@ -26,7 +28,7 @@ In the diagram, the game loop is affected/manipulated by the outside knowledge s
 These knowledge sources are things the player can manipulate/change that will affect the blackboard/repository.
 The four main knowledge sources are map input, sprite input, obstacle interference, and win/lose.
   
-## KEY CHANGES: 
+### Key Changes: 
 We re-thought our understanding of what the core repository is based on feedback. The game state is the core repository that all other components must reference to augment the map environment, control scheme, obstacles or enemies, and if there is a win/lose condition met. 
   
 #Note on Requirements:
