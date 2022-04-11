@@ -1,5 +1,10 @@
 ## Welcome to Team Silver Snakes Project Page
 
+_Derek Oda_
+_Lance Stutzman_
+_Ernesto Valenciana_
+_Jared Van Natta_
+
 # Overview of [Design](https://tai-pan1841.github.io/SilverSnakes/designdocument.md):
 
 Team Silver Snakes is developing a 2D RPG game using the Pico-8 game engine. Pico-8 is an all inclusive development environment that allows the developer to write the code using Lua, create art assets using a sprite editor within the software and run the code/play the game all within the same window. We intend to allow our player to move around in a medieval like world, fight off monsters, collect items that will aid them on their journey, and defeat a boss that will end the game. We have currently fleshed out core mechanics, and are working on developing the world, building a superficial story, and finishing our win conditions for the game. In the following sections we will describe the class level design structure we have implemented in broad strokes, our design architecture, and a few notes on our unchanging requirements. 
