@@ -5,7 +5,7 @@ _Lance Stutzman_
 _Ernesto Valenciana_
 _Jared Van Natta_
 
-# Get the [Latest Release](https://github.com/tai-pan1841/SilverSnakes/releases/tag/v0.3)!
+# Get the [Latest Release](https://github.com/tai-pan1841/SilverSnakes/tree/v0.8)!
 
 # Overview of [Design](https://tai-pan1841.github.io/SilverSnakes/designdocument.md):
 
