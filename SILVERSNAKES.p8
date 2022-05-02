@@ -18,6 +18,7 @@ stairs=4
 water=5
 
 --consts
+--completed by team
 dirs={
 	x={0,1,0,-1,1,1,-1,-1},
 	y={1,0,-1,0,1,-1,1,-1}
@@ -33,27 +34,27 @@ end
 function clearScreen()
 	cls()
 end
-
+--completed by team
 function drawPlayer()
 	local plr_spr=waterTile(plr.x,plr.y) and 18 or 1
 	spr(plr_spr,plr.x*8,plr.y*8)
 end
-
+--lance
 function monsterData(mon)
 	drawMonster(mon)
 	drawHPbar(mon)
 end
-
+--lance & jared
 function drawAllMonsters()
 	foreach(monsters,monsterData)
 end
-
+--derek
 function drawFramedRect(x,y,w,h)
 	rectfill(x,y,x+w,y+h,0)
 	rectfill(x+1,y+1,x+w-1,y+h-1,6)
 	rectfill(x+2,y+2,x+w-2,y+h-2,0)
 end
-
+--jared 
 function drawFog()
 	local dun_index=isDungeon()
 	if not dun_index then return end
@@ -66,10 +67,11 @@ function drawFog()
 		end
 	end
 end
-
+--jared
 function unfog()
 	local dun_index=isDungeon()
-	if not dun_index then return end
+	if not dun_index then return
+	end
 	local curr_fog=fog[dun_index]
 	for x=1,16 do
 		for y=1,16 do
@@ -80,19 +82,19 @@ function unfog()
 		end
 	end
 end
-
+--derek
 function framedText(text,x,y,col)
 	for i=1,8 do
 			print(text,x+dirs.x[i],y+dirs.y[i],0)		
 	end
 	print(text,x,y,col)
 end
-
+--derek
 function shadowText(text,x,y,text_col,shadow_col)
 	print(text,x,y+1,shadow_col)
 	print(text,x,y,text_col)
 end
-
+--derek
 function drawMessage()
 	if message_timer>0 and 
 				active_message~="" then
@@ -104,7 +106,7 @@ function drawMessage()
 end
 -->8
 --map and camera
-
+--team
 function drawMap()
 	map(0,0,0,0,128,64)
 end
@@ -116,7 +118,7 @@ function setCamera()
 end
 
 --handling functions
-
+--team
 function walkable(x,y,switches)
 
 	if not switches then switches={} end
@@ -128,7 +130,8 @@ function walkable(x,y,switches)
 	elseif not isSpecial(x,y) or not switches.is_player then
 		return not fget(tile,wall)
 	else
-		--lamp, boat cloak
+		--lamp, boat cloak walking
+		--completed by jared and team
  	if tile==97 and inventory.lamp then
  		return true
 		elseif tile==96 and inventory.boat then
@@ -141,43 +144,52 @@ function walkable(x,y,switches)
  end
 end
 --is text
+--derek
 function isText(x,y)
 	local tile=mget(x,y)
 	return fget(tile,text)
 end
 --is interactive
+--jared
 function isInteractive(x,y)
 	local tile=mget(x,y)
 	return fget(tile,interact)
 end
 --is special item/tile
+--ernesto
 function isSpecial(x,y)
 	local tile=mget(x,y)
 	return fget(tile,special)
 end
 --is stairs
+--jared
 function isStairs(x,y)
 	local tile=mget(x,y)
 	return fget(tile,stairs)
 end
 --is water
+--jared
 function waterTile(x,y)
 	local tile=mget(x,y)
 	return fget(tile,water)
 end
 --returns map index
+--jared
 function mapAreaIndex()
 	return (map_y/16)*8+map_x/16
 end
 --returns location
+--jared
 function locationIndex(x,y)
 	return y*128+x
 end
 --returns x y coordinates
+--jared
 function coordinateIndex(index)
 	return index%128,flr(index/128)
 end
 --border tiles
+--jared
 function randomBorderTile()
 	local tries,x,y=0
 	local dirs={"left","right","up","down"}
@@ -207,6 +219,7 @@ function randomBorderTile()
 end
 
 --marks out of screen
+--jared
 function outofScreen(tx,ty)
 	return tx<map_x or 
 								tx>map_x+15 or
@@ -214,6 +227,7 @@ function outofScreen(tx,ty)
 								ty>map_y+15
 end
 --is safe to walk
+--jared
 function safeTile()
 	return not map_areas[mapAreaIndex()+1]
 end
@@ -221,6 +235,7 @@ end
 --player
 
 --make player
+--team
 function makePlayer()
 	plr={
 	 x=54,
@@ -247,6 +262,7 @@ function makePlayer()
 	}
 end
 --check level up
+--jared
 function checkLevelUp()
 	local to_level=nextLevel(plr.lvl)
 	if plr.xp>=to_level then
@@ -259,6 +275,7 @@ function checkLevelUp()
 	end
 end
 --create xp req for next level
+--team
 function nextLevel(lvl)
 	return (lvl+1)*(lvl+1)*4
 end
@@ -266,6 +283,7 @@ end
 --gameplay
 
 --update game function
+--team
 function updateGame()
 	if t_cover>0 then
 		return
@@ -294,7 +312,14 @@ function updateGame()
 	if move_x==0 and move_y==0 then
 		return
 	end
-	
+	--handles variations of game state
+	--if something is stairs
+	--if it is interactive
+	--if it is in a dungeon 
+	--if it is a dungeon and walkable
+	--if it is walkable, move player
+	--if you're up against a wall
+
 	local tx,ty=plr.x+move_x,plr.y+move_y
 	local mon=monsterLocation(tx,ty)
 	if isText(tx,ty) then
@@ -312,18 +337,20 @@ function updateGame()
 	else
 		wallHit()
 	end
-	
+	--if player moves then mosnters move
 	if moved then
 		moveMonsters()
 		handleSpawning()
 		if finalDungeon() then
 			finalDungeonUpdate()
 		end
+		--easter egg
 		itemTurn()
 		ringRegen()
 	end
 end
-
+--x y monster location
+--lance
 function monsterLocation(x,y)
 	for m in all(monsters) do
 		if m.x==x and m.y==y then
@@ -332,7 +359,8 @@ function monsterLocation(x,y)
 	end
 	return nil
 end
-
+--movement 
+--jared
 function handleKeys()
 	local move_x,move_y=0,0
 	if btnp(⬅️) then 
@@ -347,7 +375,8 @@ function handleKeys()
 
 	return move_x,move_y
 end
-
+--attack 
+--lance and jared
 function attack(self,other)
 	other.hp-=max(0,self.atk-other.def)+flr(rnd(2))
 	if other.hp<=0 then
@@ -357,6 +386,7 @@ function attack(self,other)
 			plr.gold+=other.gold+ceil(rnd(other.gold))
 			checkLevelUp()
 		end
+		--boss function
 		if other==dark_lord then
 			transitionOut()
 			map_x=0
@@ -366,6 +396,7 @@ function attack(self,other)
 			_draw=drawEnding
 			_update=updateEnding
 		end
+		--guarding the bridge
 		if other==behemoth then
 			addArmor(4)
 			active_text={
@@ -376,7 +407,7 @@ function attack(self,other)
 		end
 	end
 end
-
+--ernesto
 function interactWith(obj)
 	if not obj then return end
 	if not obj.touched then
@@ -395,7 +426,7 @@ function interactWith(obj)
 		active_text=obj.text_after
 	end
 end
-
+--easter egg
 function heal()
 	local healing_amount=plr.hpmax-plr.hp
 	while healing_amount>0 and plr.gold>0 do
@@ -406,40 +437,40 @@ function heal()
 	plr.gold=max(plr.gold,0)
 	sfx(56)
 end
-
+--ernesto
 function addWeapon(weapon)
 	sfx(56)
 	plr.atk=max(plr.atk,weapon)
 end
-
+--ernesto
 function addArmor(armor)
 	sfx(56)
 	plr.def=max(plr.def,armor)
 end
 
-
+--derek
 function displayText(x,y)
 	active_text=getText(x,y)
 	sfx(59)
 end
-
+--lance
 function handleAttack(mon)
 	sfx(61)
 	plr:attack(mon)
 	attacked=true
 	moved=true
 end
-
+--ernesto
 function handleInteract(x,y)
 	local obj_index=locationIndex(x,y)
 	local obj=story_map[obj_index]
 	interactWith(obj)
 end
-
+--jared
 function wallHit()
 	sfx(62)
 end
-
+--jared
 function handleStairs(x,y)
 	local obj_index=locationIndex(x,y)
 	local stair=stair_map[obj_index]
@@ -450,19 +481,19 @@ function handleStairs(x,y)
 	setCamera()
 	
 end
-
+--team
 function handleSpawning()
 	if rnd()<map_danger[mapAreaIndex()+1] then
 		spawnRandomMonster()
 	end
 end
-
+--jared
 function movePlayer(x,y)
 	plr.x,plr.y=x,y
 	sfx(63)
 	moved=true
 end
-
+--easter egg
 function itemTurn()
 	if inventory.ring then
 		ring_turn+=1
@@ -470,7 +501,7 @@ function itemTurn()
 	
 	
 end
-
+--easter egg
 function ringRegen()
 	if inventory.ring and 
 				ring_turn>15 and 
@@ -487,6 +518,7 @@ end
 -->8
 --text
 
+--all of text section was done by jared and derek
 function setupText()
 	texts={}
 	addText(54,19,
@@ -588,7 +620,7 @@ function setupText()
 		"eastern village"
 	})
 end 
-
+--derek
 function addText(x,y,message)
 	texts[x+y*128]=message
 end
@@ -612,14 +644,14 @@ function drawText()
 
 		print("❎",text_x+110,text_y+#active_text*6+sin(time()*2)+6,6)
 	end
-	
+	--gets player out of text boss
 	if btnp(❎) and active_text then
 		active_text=nil
 		sfx(58)
 	end
 end
 
-
+--derek
 function message(text,duration)
 	active_message=text
 	message_timer=duration*30
@@ -627,7 +659,7 @@ end
 
 -->8
 --monsters
-
+--lance
 function makeMonster(x,y,kind)
 	local monster={
 		x=x,
@@ -651,7 +683,7 @@ function makeMonster(x,y,kind)
 
 	return monster
 end
-
+--lance
 function makeToughMonster(x,y,kind)
 	local monster={
 		x=x,
@@ -675,7 +707,7 @@ function makeToughMonster(x,y,kind)
 
 	return monster
 end
-
+--lance and jared
 function moveMonster(mon,mov_x,mov_y)
 	if isDungeon() and dist(plr.x,plr.y,mon.x,mon.y)>4 then
 		return
@@ -697,7 +729,7 @@ function moveMonster(mon,mov_x,mov_y)
 		mon.y+=mov_y
 	end
 end
-
+--lance and jared, moves monster in direction of player
 function findDirection(monster)
 	local mx,my,px,py=monster.x,monster.y,plr.x,plr.y
 	local mov_x,mov_y,tdist=0,0,999
@@ -718,11 +750,11 @@ function findDirection(monster)
 
 	return mov_x,mov_y
 end
-
+--lance and jared
 function isPlayerAt(x,y)
 	return x==plr.x and y==plr.y
 end
-
+--lance
 function drawMonster(monster)
 	if monster.pal_swap then
 		
@@ -732,11 +764,12 @@ function drawMonster(monster)
 		monster.x*8,monster.y*8)
 	
 end
-
+--on monster die, undraw
+--lance
 function removeMonster(self)
 	del(monsters,self)
 end
-
+--lance
 function moveMonsters()
 	for m in all(monsters) do
 		if not safeTile() or not outofScreen(m.x,m.y) then 
@@ -744,7 +777,7 @@ function moveMonsters()
 		end
 	end
 end
-
+--lance
 function getRandomEnemy()
 	local pool,mon,mon_data=map_areas[mapAreaIndex()+1]
 
@@ -767,9 +800,9 @@ function spawnRandomMonster()
 end
 -->8
 --data
-
+--all monster types done by team
 monster_types={
-	imp={
+	skultula={
 		hp=8,
 		atk=0,
 		def=0,
@@ -796,7 +829,7 @@ monster_types={
 		gold=3,
 		sprite=50
 	},
-	octopus={
+	octork={
 		hp=10,
 		atk=2,
 		def=1,
@@ -843,7 +876,7 @@ monster_types={
 		gold=4,
 		sprite=55
 	},
-	drake={
+	dragon={
 		hp=18,
 		atk=3,
 		def=3,
@@ -861,7 +894,7 @@ monster_types={
 		gold=5,
 		sprite=60
 	},
-	blob={
+	ooze={
 		hp=10,
 		atk=2,
 		def=3,
@@ -899,7 +932,7 @@ monster_types={
 		sprite=58
 	}
 }
-
+--ernesto
 weapons={
 	nil,
 	nil,
@@ -909,7 +942,7 @@ weapons={
 	"godskin sword",
 	"moonlight great sword"
 }
-
+--ernesto
 shields={
 	"shield",
 	"hero's shield",
@@ -917,42 +950,42 @@ shields={
 	"templar shield",
 	"fingerprint shield"
 }
-
+--team
 map_areas={
 	nil,--0
-	{"bandit","bandit","imp","zombie","spider","bat","giant"},
-	{"bandit","bandit","imp","zombie","spider","bat","giant"},
-	{"imp","imp","imp","bandit","spider"},
-	{"spider","spider","swarm","octopus","blob"},
-	{"imp","imp","imp","bandit","spider"},
-	{"imp","imp","imp","bandit","spider"},
-	{"imp","imp","imp","bandit","spider"},	
+	{"bandit","bandit","skultula","zombie","spider","bat","giant"},
+	{"bandit","bandit","skultula","zombie","spider","bat","giant"},
+	{"skultula","skultula","skultula","bandit","spider"},
+	{"spider","spider","swarm","octork","ooze"},
+	{"skultula","skultula","skultula","bandit","spider"},
+	{"skultula","skultula","skultula","bandit","spider"},
+	{"skultula","skultula","skultula","bandit","spider"},	
 	nil,--8
 	nil,
-	{"imp","imp","imp","bandit","spider"},	
+	{"skultula","skultula","skultula","bandit","spider"},	
 	nil,
-	{"imp","imp","imp","bandit","spider"},	
-	{"imp","imp","imp","bandit","spider"},	
-	{"imp","imp","imp","bandit","spider"},	
-	{"imp","imp","imp","bandit","spider"},	
+	{"skultula","skultula","skultula","bandit","spider"},	
+	{"skultula","skultula","skultula","bandit","spider"},	
+	{"skultula","skultula","skultula","bandit","spider"},	
+	{"skultula","skultula","skultula","bandit","spider"},	
 	nil,--16
-	{"imp","imp","imp","bandit","spider"},	
-	{"imp","imp","imp","bandit","spider"},	
-	{"imp","imp","imp","bandit","spider"},	
-	{"imp","imp","imp","bandit","spider"},	
-	{"imp","imp","imp","bandit","spider"},	
+	{"skultula","skultula","skultula","bandit","spider"},	
+	{"skultula","skultula","skultula","bandit","spider"},	
+	{"skultula","skultula","skultula","bandit","spider"},	
+	{"skultula","skultula","skultula","bandit","spider"},	
+	{"skultula","skultula","skultula","bandit","spider"},	
 	nil,
-	{"imp","imp","imp","bandit","spider"},	
+	{"skultula","skultula","skultula","bandit","spider"},	
 	nil,--24
-	{"spider","spider","swarm","octopus","octopus","octopus","blob","bat","bat"},
-	{"spider","spider","swarm","octopus","octopus","octopus","blob","bat","bat"},
-	{"scorpion","scorpion","zombie","zombie","octopus","octopus","demon","drake"},
-	{"scorpion","scorpion","zombie","zombie","octopus","octopus","demon","drake"},
-	{"imp","imp","imp","bandit","spider"},	
-	{"imp","imp","imp","bandit","spider"},	
+	{"spider","spider","swarm","octork","octork","octork","ooze","bat","bat"},
+	{"spider","spider","swarm","octork","octork","octork","ooze","bat","bat"},
+	{"scorpion","scorpion","zombie","zombie","octork","octork","demon","dragon"},
+	{"scorpion","scorpion","zombie","zombie","octork","octork","demon","dragon"},
+	{"skultula","skultula","skultula","bandit","spider"},	
+	{"skultula","skultula","skultula","bandit","spider"},	
 	nil
 }
-
+--team
 map_danger={
 	0,
 	0.1,
@@ -987,7 +1020,8 @@ map_danger={
 	0.05,
 	0
 }
-
+--ernesto and jared
+--all interactive objects
 interactive_objects={
 	{
 		x=123,
@@ -1325,21 +1359,12 @@ interactive_objects={
 		sprite_before=57,
 		sprite_after=57,
 		text_before={
-			"we,dwarves,usually don't",
-			"go out to the surface,but",
-			"i have been chosen to stand",
-			"watch and bestow this finely",
-			"crafted shield upon the hero",
-			"who is questing to mend the",
-			"elden ring ."
+			"ah you found me",
+			"take this shield as",
+			"reward!"
 		},
 		text_after={
-			"did you know that the arcs",
-			"of the elden ring was fashioned",
-			"from moonsteel by a dwarven",
-			"smith? seek a weapon made",
-			"from the same metal and you",
-			"shall prevail over all foes!"
+			"please leave!"
 		},
 		action=function()
 			addArmor(3)
@@ -1404,7 +1429,7 @@ interactive_objects={
 		end
 	}
 }
-
+--jared
 stairs_list={
 	{
 		--dungeon 1
@@ -1467,14 +1492,14 @@ stairs_list={
 		to=locationIndex(22,16)
 	}
 }
-
+--jared
 dungeon_coords={
 	locationIndex(0,0),
 	locationIndex(0,16),
 	locationIndex(0,32),
 	locationIndex(0,48)
 }
-
+--lance
 dungeon_monsters={
 	{8,1,"bandit","t"},
 	{1,1,"bandit"},
@@ -1482,12 +1507,12 @@ dungeon_monsters={
 	{14,0,"spider"},
 	{5,7,"bandit"},
 	{15,11,"zombie"},
-	{6,15,"imp","t"},
+	{6,15,"skultula","t"},
 	{10,14,"zombie"},
 	{5,16,"spider"},
 	{9,18,"giant"},
 	{9,24,"bandit","t"},
-	{14,22,"imp","t"},
+	{14,22,"skultula","t"},
 	{0,19,"bandit","t"},
 	{9,30,"zombie","t"},
 	{14,28,"zombie"},
@@ -1496,14 +1521,14 @@ dungeon_monsters={
 	{13,37,"swarm"},
 	{4,36,"scorpion"},
 	{11,33,"spider","t"},
-	{2,33,"octopus"},
-	{5,41,"imp","t"},
+	{2,33,"octork"},
+	{5,41,"skultula","t"},
 	{6,47,"swarm"},
 	{10,47,"swarm"}
 }
 
 
-
+--team
 win_text={
 	"you win!"
 }
@@ -1516,26 +1541,26 @@ final_tough_monsters={
 	"bat",
 	"spider",
 	"zombie",
-	"octopus"
+	"octork"
 }
 
 final_monsters={
 	"demon",
-	"drake",
+	"dragon",
 	"scorpion"
 }
 -->8
 --utils
-
+--jared
 function dist(fx,fy,tx,ty)
 	local dx,dy=fx-tx,fy-ty
 	return sqrt(dx*dx+dy*dy) 
 end
-
+--derek
 function initTransition()
 	t_cover=0
 end
-
+--derek
 function transitionOut()
 	music(-1,300)
 	local x,y=map_x*8,map_y*8
@@ -1545,7 +1570,7 @@ function transitionOut()
 		flip()
 	end
 end
-
+--derek
 function transitionIn()
 	local x,y=map_x*8,map_y*8
 	if t_cover>0 then
@@ -1555,7 +1580,7 @@ function transitionIn()
 end
 -->8
 --ui
-
+--lance and derek
 function drawStatusBar()
 	local x,y=map_x*8+4,plr.y%16>7 and map_y*8+4 or map_y*8+112
 	drawFramedRect(x,y,40,10)
@@ -1563,7 +1588,7 @@ function drawStatusBar()
 	framedText("❎:stats",x+86,y+3,6)
 
 end
-
+--erenesto and lance
 function drawStats()
 	local x,y=map_x*8+4,map_y*8+20
 	drawFramedRect(x,y,120,80)
@@ -1596,7 +1621,7 @@ function drawStats()
 		spr(41,x+79,y+52)
 	end
 	
-	
+	--jared
 	if isEldenWhole() then
 		--spr(35,x+19,y+70)
 		sspr(24,16,8,8,x+56,y+62,16,16)
@@ -1613,7 +1638,7 @@ function drawStats()
 	end
 	print("❎",x+110,y+72+sin(time()*2),6)
 end
-
+--lance and derek
 function drawHPbar(ent)
 	if ent.hp>=ent.hpmax then
 		return
@@ -1626,7 +1651,7 @@ end
 
 -->8
 --story progression
-
+--team
 function initStory()
 	inventory={
 		boat=false,
@@ -1641,11 +1666,11 @@ function initStory()
 	}	
 	initInteractiveObjs()
 end
-
+--ernesto
 function takeItem(item)
 		inventory[item]=true
 end
-
+--team
 function initInteractiveObjs()
 	story_map={}
 	for obj in all(interactive_objects) do
@@ -1656,14 +1681,14 @@ function initInteractiveObjs()
 		story_map[obj_index].index=obj_index		
 	end
 end
-
+--jared
 function initStairs()
 	stair_map={}
 	for stair in all(stairs_list) do
 		stair_map[stair.from]=stair.to
 	end 
 end
-
+--jared
 function isEldenWhole()
 	return inventory.shard_left and
 							 inventory.shard_middle and 
@@ -1671,7 +1696,7 @@ function isEldenWhole()
 end
 -->8
 --dungeons
-
+--team
 function populateDungeons()
 	for item in all(dungeon_monsters) do
 		local x,y,kind,tough=item[1],item[2],item[3],item[4]
@@ -1679,7 +1704,7 @@ function populateDungeons()
 		add(monsters,make_function(x,y,monster_types[kind]))
 	end
 end
-
+--jared
 function makeFog()
 	fog={}
 	for i=1,4 do
@@ -1692,7 +1717,7 @@ function makeFog()
 		end
 	end
 end
-
+--jared
 function isDungeon()
 	for i,dun in pairs(dungeon_coords) do
 		if locationIndex(map_x,map_y)==dun then
@@ -1701,11 +1726,11 @@ function isDungeon()
 	end
 	return false
 end
-
+--jared
 function finalDungeon()
 	return isDungeon() and map_y>47
 end
-
+--jared
 function finalDungeonUpdate()
 	final_dungeon_turn+=1
 	if final_dungeon_turn>=10 then
@@ -1722,7 +1747,7 @@ end
 -->8
 --game screens
 
-
+--team
 function initGame()
 	setupVars()
  	setupMap()
@@ -1736,13 +1761,13 @@ function initGame()
 	initTransition()
 	initTitle()
 end
-
+--team
 function setupMap()
  map_x=0
  map_y=0
  player_in_dungeon=false
 end
-
+--team
 function setupVars()
  stats_mode=drawStatusBar
  monsters={}
@@ -1756,21 +1781,21 @@ function setupVars()
  active_message=""
  message_timer=0
 end
-
+--team
 function initTitle()
 	
 	title_cursor=0
 	_draw=drawTitle
 	_update=updateTitle
 end
-
+--lance
 function initSpecMonster()
 	behemoth=makeMonster(77,53,monster_types.behemoth)
 	add(monsters,behemoth)
 	dark_lord=makeMonster(8,52,monster_types.darklord)
 	add(monsters,dark_lord)
 end
-
+--derek
 function drawTitle()
 	clearScreen()
 	spr(72,36,36,8,3)
@@ -1778,7 +1803,7 @@ function drawTitle()
 	shadowText("start",55,80,title_cursor==0 and 10 or 5,title_cursor==0 and 4 or 0)
 	transitionIn()
 end
-
+--derek
 function updateTitle()
 
 	if btnp(❎) or btnp(🅾️) then
@@ -1794,7 +1819,7 @@ end
 
 
 
-
+--team
 function drawGame()
 	clearScreen()
 	drawMap()
@@ -1809,14 +1834,14 @@ function drawGame()
 	transitionIn()
 end
 
-
+--team
 function drawGameOver()
 	clearScreen()
 	cls()
 	camera()
 	spr(9,50,flr(game_over_pos/2),4,2)
 end
-
+--team
 function updateGameOver()
 	game_over_pos=max(100,game_over_pos-1)
 	if btnp(❎) or btnp(🅾️) then
@@ -1824,7 +1849,7 @@ function updateGameOver()
 		initGame()
 	end
 end
-
+--derek
 function drawEnding()
 	clearScreen()
 	message_x=good_ending and 0 or 3
@@ -1840,7 +1865,7 @@ function drawEnding()
 	
 	transitionIn()
 end
-
+--derek
 function updateEnding()
 	if btnp(❎) or btnp(🅾️) then
 		transitionOut()
@@ -1872,13 +1897,13 @@ __gfx__
 4111111155055050a4444400090990904a4444a40069996060006060005550000004000030000030003030003000000030001300000100003000000033553353
 0004100055055050044440004a4444a44a4444a4055555550666066000050000000a000013333310001310001333333030000130000300003000000055533353
 0004100000000000000000004a4444a44a4444a40000000000000000000000000000000001111100000100000111111010000010000100001000000055333553
-04444400660000004444440005555500000990000009900090909009000000004400000000000000000090009900990000000000044444000000033333355533
-44fff44066000000400f044050006050900990090099990009090090000000004400000000080000000490800900900000000000044444000003355555555330
-4000f040660660004fffff40500006500909909009099090909009000000000044044000099a7000000408000900900000000000000000000035533355533300
-4fffff40660660604000f0405600005000999900900990090900900900000000440440009007a800004440009000090006666660004440000353335533333000
-40f00040660660604fffff4050600050000990000009900090090090000000004404404090009000044000009000090066666600004440003533355333344490
-4fffff400000000040f0004050000050900990090099990000900909000000004404404009009000440000009999990000000000000000003533553344904944
-40000040660660600444444005555500090990900909909009009090000000004404404000990000400000000999900006666000044444003533355549449000
+04444400660000004444440009999900000990000009900090909009000000004400000000000000000090009900990000000000044444000000033333355533
+44fff44066000000400f044090009090900990090099990009090090000000004400000000080000000490800900900000000000044444000003355555555330
+4000f040660660004fffff40900009900909909009099090909009000000000044044000099a7000000408000900900000000000000000000035533355533300
+4fffff40660660604000f0409900009000999900900990090900900900000000440440009007a800004440009000090006666660004440000353335533333000
+40f00040660660604fffff4090900090000990000009900090090090000000004404404090009000044000009000090066666600004440003533355333344490
+4fffff400000000040f0004090090090900990090099990000900909000000004404404009009000440000009999990000000000000000003533553344904944
+40000040660660600444444009999900090990900909909009009090000000004404404000990000400000000999900006666000044444003533355549449000
 00000000000000000000000000000000009999009009900990090909000000000000000000000000000000000000000000000000000000003553335504494400
 4000004060555000005550000555550000555500009a000000000000008880004066604000000000005550000007000000555000000000000090900000070000
 40555040605f50000585850058555850005115000900000000880000088888004777774009000900058585007777770000585000000000006099906000707000
