@@ -5,7 +5,19 @@ _Lance Stutzman_
 _Ernesto Valenciana_
 _Jared Van Natta_
 
-# Get the [Latest Release](https://github.com/tai-pan1841/SilverSnakes/tree/v1.0)!
+# Get the [Latest Release](https://github.com/tai-pan1841/SilverSnakes/tree/v1.1)!
+
+# Final Documentation
+
+At this stage Team Silver Snakes the Game is finished*(meaning we took it as far as we felt we could within the time frame). We were able to implement a RPG game using the PICO-8 platform. The player is able to move around a vast and expansive map, fight enemies, collect items, level up, and defeat a boss to win. Every team member focused on a different aspect of the game. Jared focused on the map and certain player/map interactions (stairs), Lance focused on combat, enemies and leveling up, Derek focused on all of the menu systems, the start, win, and lose screens, and added all of the text to the game, and finally Ernesto focused on adding the items into the game, their interactions with the game and drawing the item sprites in the 'stats' screen. 
+
+The game in its 'final' state is not without bugs. We have an issue with enemies spawning all at once and running the player down. In order to survive this onslaught teh player has to abuse a hidden healing system. The enemies, player stats, and combat are not well tuned and do not scale appropriately has the player levels. Finally, occasionally upon defeating the final boss the 'game over' screen comes up instead of game win and we have no real understanding of why this is happening. 
+
+## A Note on Repo Usage
+
+We understand that visually on GitHub all commits are coming from one user. This was done intentionally, as early in the development cycle we were facing issues with global and local variables breaking the functionality of the game. In order to combat this, all code was submitted to Jared and then merged on his local machine. We initiated local variables for almost all functions and then fed them to other functions to keep global function variable names from being confused, misused, or inadvertently changed. In order to showcase what each team member contributed every section of the code is labeled/commented with who completed it. Certain things like map design, and some of the sprite styling were done as a team, and these sections are labeled appropriately. 
+
+Again we understand that the first few weeks of the course were focused on understanding and competantly using Git, however we felt it was easier for our workflow to merge locally and review the code before committing. PICO-8 is unlike other development platforms where everything exists in a single file and is broken up into tabs. We found that doing each function separately (essentially as classes) and calling them accordingly was the most conducive to success for our project. 
 
 # Test Report
 
